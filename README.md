@@ -36,8 +36,3 @@ ou:
 ```
 ./horse_race
 ```
-
-- criação e gerenciamento de threads  
-- uso de mutex e barrier  
-- controle de concorrência  
-- manipulação de terminal com ANSI  
