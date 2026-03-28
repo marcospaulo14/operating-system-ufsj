@@ -4,7 +4,6 @@ Simulação de uma corrida de cavalos no terminal utilizando linguagem C e a bib
 
 O projeto tem como foco a prática de concorrência, sincronização e manipulação de saída no terminal.
 
----
 
 ## Funcionamento
 
@@ -14,15 +13,13 @@ O projeto tem como foco a prática de concorrência, sincronização e manipula�
 - Os cavalos avançam no terminal simultaneamente
 - Ao final, cada thread registra sua posição de chegada
 
----
 
 ## Concorrência e Sincronização
 
 - **Mutex (`print_lock`)**: controla o acesso ao terminal para evitar sobreposição de escrita  
 - **Mutex (`win_lock`)**: garante a ordem correta de chegada  
 - **Barrier**: sincroniza o início da corrida
-- 
----
+
 
 ## Compilação
 
