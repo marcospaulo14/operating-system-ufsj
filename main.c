@@ -9,29 +9,43 @@ pthread_barrier_t barrier;
 pthread_mutex_t print_lock;
 pthread_mutex_t win_lock;
 int win_counter = 0;
+int last_printed = -1;
 
 void* race(void* arg) {
     int id = *(int*)arg;
 
     pthread_barrier_wait(&barrier); //wait until all threads joined
 
+    char* colors[2] = {
+        TC_YEL,
+        TC_WHT
+    };
+    int color_id = 0;
+
     int dec_count = 0; 
 
     //print trace from 1 to 100  
     for (int i = 1; i <= 100; i++) {
         char buffer[5] = {'.', '\0'};
+        int col = i + dec_count;
 
-        //print multiples of 10 as numbers
+        //prepare buffer
         if (i % 10 == 0) {
             dec_count++;
             sprintf(buffer, "%d", i);
+            col--;
         }
 
-        //print trace and horse as an atomic section
+        //attomic print trace and horse
         pthread_mutex_lock(&print_lock);
 
-        tc_mv_cursor(id * 3 + 2, i + dec_count);
-        printf("%s", buffer);
+        if (last_printed != id) {
+            color_id = !color_id;
+            last_printed = id;
+        }
+
+        tc_mv_cursor(id * 3 + 2, col);
+        printf("%s%s%s", colors[color_id], buffer, TC_RST);
         print_horse(id * 3 + 1, i + 2 + dec_count, i/5, id);
 
         pthread_mutex_unlock(&print_lock);
