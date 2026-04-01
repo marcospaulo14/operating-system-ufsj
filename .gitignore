@@ -1,0 +1,13 @@
+# Compiled files
+*.o
+*.exe
+horse_race
+
+# Build folders
+build/
+
+# OS
+.DS_Store
+
+# Git
+.git
