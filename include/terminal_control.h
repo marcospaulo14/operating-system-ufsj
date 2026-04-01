@@ -14,9 +14,9 @@
 #define TC_GRY "\x1b[38;5;235m"
 
 //clear terminal
-#define tc_clear() puts("\x1b[2J")
+void tc_clear();
 
 //move cursor to row and column
-#define tc_mv_cursor(row, col) printf("\x1b[%d;%dH", row, col)
+void tc_mv_cursor(int row, int col);
 
 #endif
